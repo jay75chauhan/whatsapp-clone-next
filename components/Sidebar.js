@@ -30,7 +30,7 @@ function Sidebar() {
       input !== user.email
     ) {
       // we add chat into the db 'chat' collection if it dosent alredy exits and is valid
-      db.collection("chat").add({
+      db.collection("chats").add({
         users: [user.email, input],
       });
     }
@@ -39,13 +39,13 @@ function Sidebar() {
   const chatAlreadyExists = (receipientEmail) =>
     !!chatSnapshot?.docs.find(
       (chat) =>
-        chat.data().user.find((user) => user === receipientEmail)?.length > 0
+        chat.data().users.find((user) => user === receipientEmail)?.length > 0
     );
 
   return (
     <Container>
       <Header>
-        <UserAvatar onClick={() => auth.signOut()} />
+        <UserAvatar src={user.photoURL} onClick={() => auth.signOut()} />
 
         <IconContainer>
           <IconButton>
@@ -60,10 +60,10 @@ function Sidebar() {
         <SearchIcon />
         <SearchInput placeholder="Serch in chats..." />
       </Search>
-      <SidebarButton onClick={createChat}>Start a new chat</SidebarButton>
+      <SidebarButton onClick={createChat}>Add User</SidebarButton>
       {/*List of chats */}
       {chatSnapshot?.docs.map((chat) => (
-        <Chat key={chat.id} id={chat.id} user={chat.data().users} />
+        <Chat key={chat.id} id={chat.id} users={chat.data().users} />
       ))}
     </Container>
   );
@@ -71,7 +71,21 @@ function Sidebar() {
 
 export default Sidebar;
 
-const Container = styled.div``;
+const Container = styled.div`
+  flex: 0.45;
+  border-right: 1px solid whitesmoke;
+  height: 100vh;
+  min-width: 300px;
+  max-width: 350px;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none; /*IE and Edge*/
+  scrollbar-width: none; /*firefox*/
+`;
 
 const Search = styled.div`
   display: flex;
@@ -82,10 +96,11 @@ const Search = styled.div`
 
 const SidebarButton = styled(Button)`
   width: 100%;
+  background: whitesmoke;
 
   &&& {
-    border-top: 1px solid whitesmoke;
-    border-bottom: 1px solid whitesmoke;
+    border-top: 2px solid whitesmoke;
+    border-bottom: 2px solid whitesmoke;
   }
 `;
 
