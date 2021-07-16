@@ -3,23 +3,30 @@ import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import styled from "styled-components";
 import { auth, db } from "../firebase";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+
 import AttachFilentIcon from "@material-ui/icons/AttachFile";
 import { useCollection } from "react-firebase-hooks/firestore";
 import Message from "./Message";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+
 import firebase from "firebase";
 import MicIcon from "@material-ui/icons/Mic";
 import { InsertEmoticon } from "@material-ui/icons";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TimeAgo from "timeago-react";
 import getRecipientEmail from "../utils/getRecipientEmail";
 
 function ChatScreen({ chat, messages }) {
   const [user] = useAuthState(auth);
-  const endOfMessageRef = useRef(null);
   const router = useRouter();
+  const endOfMessageRef = useRef(null);
+  const endOfContainer = useRef(null);
+
   const [input, setInput] = useState("");
 
+  useEffect(() => {
+    ScrollToContainer();
+  });
   const [messagesSnapshot] = useCollection(
     db
       .collection("chats")
@@ -59,6 +66,12 @@ function ChatScreen({ chat, messages }) {
       block: "start",
     });
   };
+  const ScrollToContainer = () => {
+    endOfContainer.current.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+    });
+  };
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -85,6 +98,10 @@ function ChatScreen({ chat, messages }) {
   const recipient = receipientSnapshot?.docs?.[0]?.data();
 
   const recipientEmail = getRecipientEmail(chat.users, user);
+
+  const goBack = () => {
+    router.push(`/`);
+  };
 
   return (
     <Container>
@@ -115,12 +132,12 @@ function ChatScreen({ chat, messages }) {
             <AttachFilentIcon />
           </IconButton>
           <IconButton>
-            <MoreVertIcon />
+            <NavigateBeforeIcon onClick={goBack} />
           </IconButton>
         </HeaderIcons>
       </Header>
 
-      <MessageContainer>
+      <MessageContainer ref={endOfContainer}>
         {/* show messages */}
         {showMessages()}
 
@@ -130,7 +147,11 @@ function ChatScreen({ chat, messages }) {
 
       <InputContainer>
         <InsertEmoticon />
-        <Input value={input} onChange={(e) => setInput(e.target.value)} />
+        <Input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="what's on your minde...."
+        />
         <button hidden disabled={!input} type="submit" onClick={sendMessage}>
           Sen message
         </button>
@@ -151,7 +172,7 @@ const Header = styled.div`
   z-index: 100;
   display: flex;
   padding: 11px;
-  height: 80px;
+  height: 70px;
   align-items: center;
   border-radius: 1px solid whitesmoke;
 `;
@@ -159,23 +180,39 @@ const Header = styled.div`
 const HeaderInformation = styled.div`
   margin-left: 15px;
   flex: 1;
+  justify-items: center;
 
   > h3 {
-    margin-bottom: 3px;
+    margin: 0;
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
 
   > p {
     font-size: 14px;
+
     color: gray;
+    margin: 0;
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
   }
 `;
 
-const HeaderIcons = styled.div``;
+const HeaderIcons = styled.div`
+  display: flex;
+`;
 
 const MessageContainer = styled.div`
   padding: 30px;
   min-height: 90vh;
   background-color: #e5ded8;
+  @media (max-width: 768px) {
+    padding: 8px;
+    padding-top: 5px;
+    padding-bottom: 35px;
+  }
 `;
 
 const EndOfMessage = styled.div`
@@ -201,7 +238,7 @@ const Input = styled.input`
   margin-left: 15px;
   margin-right: 15px;
 
-  padding: 20px;
+  padding: 15px;
 
   background-color: whitesmoke;
 `;

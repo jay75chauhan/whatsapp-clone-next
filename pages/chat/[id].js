@@ -3,6 +3,7 @@ import Head from "next/head";
 import { db, auth } from "../../firebase";
 import Sidebar from "../../components/Sidebar";
 import ChatScreen from "../../components/ChatScreen";
+import { BrowserView } from "react-device-detect";
 import { useAuthState } from "react-firebase-hooks/auth";
 import getRecipientEmail from "../../utils/getRecipientEmail";
 
@@ -17,7 +18,10 @@ function Chat({ chat, messages }) {
           href="https://user-images.githubusercontent.com/66429052/116411661-8c07b780-a853-11eb-8eea-c20239860f81.png"
         />
       </Head>
-      <Sidebar />
+      <BrowserView>
+        <Sidebar />
+      </BrowserView>
+
       <ChatContainer>
         <ChatScreen chat={chat} messages={messages} />
       </ChatContainer>
@@ -80,3 +84,5 @@ const ChatContainer = styled.div`
   -ms-overflow-style: none; /*IE and Edge*/
   scrollbar-width: none; /*firefox*/
 `;
+
+const SidebarMo = styled(Sidebar)``;
