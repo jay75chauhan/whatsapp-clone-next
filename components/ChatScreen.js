@@ -169,7 +169,7 @@ const Header = styled.div`
   position: sticky;
   top: 0;
   background-color: white;
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   padding: 11px;
   height: 70px;
@@ -206,7 +206,7 @@ const HeaderIcons = styled.div`
 
 const MessageContainer = styled.div`
   padding: 30px;
-  min-height: 90vh;
+
   background-color: #e5ded8;
   @media (max-width: 768px) {
     padding: 8px;
