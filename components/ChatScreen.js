@@ -163,7 +163,10 @@ function ChatScreen({ chat, messages }) {
 
 export default ChatScreen;
 
-const Container = styled.div``;
+const Container = styled.div`
+  scroll-behavior: none;
+  position: sticky;
+`;
 
 const Header = styled.div`
   position: sticky;
@@ -206,6 +209,7 @@ const HeaderIcons = styled.div`
 
 const MessageContainer = styled.div`
   padding: 30px;
+  min-height: 80vh;
 
   background-color: #e5ded8;
   @media (max-width: 768px) {
