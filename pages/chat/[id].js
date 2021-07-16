@@ -84,5 +84,3 @@ const ChatContainer = styled.div`
   -ms-overflow-style: none; /*IE and Edge*/
   scrollbar-width: none; /*firefox*/
 `;
-
-const SidebarMo = styled(Sidebar)``;
