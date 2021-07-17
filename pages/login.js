@@ -77,6 +77,6 @@ const Creater = styled.a`
 
   :hover {
     color: red;
-    border-bottom: 1px solid red;
+    border-bottom: 2px solid red;
   }
 `;

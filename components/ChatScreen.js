@@ -209,7 +209,7 @@ const HeaderIcons = styled.div`
 
 const MessageContainer = styled.div`
   padding: 30px;
-  min-height: 75vh;
+  max-height: 75vh;
 
   background-color: #e5ded8;
   @media (max-width: 768px) {
