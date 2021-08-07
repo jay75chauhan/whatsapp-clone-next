@@ -163,16 +163,13 @@ function ChatScreen({ chat, messages }) {
 
 export default ChatScreen;
 
-const Container = styled.div`
-  z-index: 2000;
-  position: sticky;
-`;
+const Container = styled.div``;
 
 const Header = styled.div`
   position: sticky;
   top: 0;
   background-color: white;
-  z-index: 1000;
+  z-index: 900;
   display: flex;
   padding: 11px;
   height: 70px;
@@ -209,7 +206,7 @@ const HeaderIcons = styled.div`
 
 const MessageContainer = styled.div`
   padding: 30px;
-  max-height: 75vh;
+  min-height: 75vh;
 
   background-color: #e5ded8;
   @media (max-width: 768px) {
@@ -241,6 +238,7 @@ const Input = styled.input`
   border-radius: 30px;
   margin-left: 15px;
   margin-right: 15px;
+  position: sticky;
 
   padding: 15px;
 
