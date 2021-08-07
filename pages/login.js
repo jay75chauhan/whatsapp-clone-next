@@ -49,8 +49,6 @@ const Container = styled.div`
   display: grid;
   place-items: center;
   height: 100vh;
-  background-color: transparent;
-  --tw-backdrop-blur: blur(24px);
 `;
 
 const LoginContainer = styled.div`
@@ -97,6 +95,8 @@ const Logo = styled.img`
   @media (max-width: 768px) {
     width: 140px;
     height: 140px;
+
+    visibility: hidden;
   }
 `;
 
@@ -109,5 +109,7 @@ const Creater = styled.a`
   :hover {
     color: #cacaca;
     border-bottom: 2px solid red;
+  }
+  @media (max-width: 768px) {
   }
 `;

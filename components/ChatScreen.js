@@ -163,7 +163,10 @@ function ChatScreen({ chat, messages }) {
 
 export default ChatScreen;
 
-const Container = styled.div``;
+const Container = styled.div`
+  position: sticky;
+  top: 0;
+`;
 
 const Header = styled.div`
   position: sticky;

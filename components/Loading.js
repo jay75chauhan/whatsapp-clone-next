@@ -33,7 +33,7 @@ function Loading() {
             height={200}
           />
 
-          <Circle color="#f5f5fd" size={109} />
+          <Circle color="#f5f5fd" size={200} />
         </div>
       </center>
     </>
