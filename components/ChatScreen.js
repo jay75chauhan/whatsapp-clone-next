@@ -213,6 +213,7 @@ const MessageContainer = styled.div`
     padding: 8px;
     padding-top: 5px;
     padding-bottom: 35px;
+    min-height: 50vh;
   }
 `;
 
