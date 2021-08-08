@@ -29,11 +29,11 @@ function Loading() {
           <img
             src="https://user-images.githubusercontent.com/66429052/116411661-8c07b780-a853-11eb-8eea-c20239860f81.png"
             alt=""
-            style={{ marginBottom: 10, marginTop: 5 }}
+            style={{ marginBottom: 10, marginTop: 2 }}
             height={200}
           />
 
-          <Circle color="#f5f5fd" size={200} />
+          <Circle color="#f5f5fd" size={150} />
         </div>
       </center>
     </>
