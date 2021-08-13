@@ -28,7 +28,7 @@ function Login() {
       />
 
       <LoginContainer>
-        <Logo src="https://user-images.githubusercontent.com/66429052/116411661-8c07b780-a853-11eb-8eea-c20239860f81.png" />
+        <Hidden />
         <GoogleButton
           type="dark"
           // label="Be Cool"
@@ -53,8 +53,9 @@ const Container = styled.div`
 
 const LoginContainer = styled.div`
   display: flex;
-  padding: 100px;
-  z-index: 100;
+  padding: 20px;
+  margin-top: 50px;
+
   background-color: transparent;
   --tw-backdrop-blur: blur(24px);
 
@@ -71,7 +72,7 @@ const LoginContainer = styled.div`
   border-radius: 20px;
 
   @media (max-width: 768px) {
-    padding: 40px;
+    margin-top: 80px;
   }
   :before {
     content: "";
@@ -88,15 +89,12 @@ const LoginContainer = styled.div`
   }
 `;
 
-const Logo = styled.img`
-  width: 180px;
-  height: 180px;
-  margin-bottom: 50px;
+const Hidden = styled.a`
+  margin-top: 450px;
+  padding-left: 500px;
   @media (max-width: 768px) {
-    width: 140px;
-    height: 140px;
-
-    visibility: hidden;
+    margin-top: 270px;
+    padding-left: 320px;
   }
 `;
 
@@ -109,7 +107,5 @@ const Creater = styled.a`
   :hover {
     color: #cacaca;
     border-bottom: 2px solid red;
-  }
-  @media (max-width: 768px) {
   }
 `;
