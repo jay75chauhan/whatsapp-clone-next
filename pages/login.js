@@ -93,8 +93,8 @@ const Hidden = styled.a`
   margin-top: 450px;
   padding-left: 500px;
   @media (max-width: 768px) {
-    margin-top: 270px;
-    padding-left: 320px;
+    margin-top: 300px;
+    padding-left: 270px;
   }
 `;
 
